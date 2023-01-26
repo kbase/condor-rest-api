@@ -1,6 +1,8 @@
 FROM kbase/sdkpython:3.8.0
 
-RUN apt-get update -y && apt-get install -y vim wget
+RUN apt-get update -y && apt-get install -y vim wget gnupg
+RUN curl -fsSL https://research.cs.wisc.edu/htcondor/repo/keys/HTCondor-10.x-Key > key; cat key | apt-key add -;
+ 
 RUN curl -fsSL https://get.htcondor.org |  /bin/bash -s -- --no-dry-run
 
 RUN useradd -m restd
